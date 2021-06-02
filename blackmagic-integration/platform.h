@@ -39,7 +39,7 @@ extern GpioPin_t platform_swclk_pin;
 extern void commands_printf(const char* format, ...);
 
 #define PLATFORM_HAS_DEBUG
-#define DEBUG commands_printf
+#define PLATFORM_PRINTF commands_printf
 
 #define SWDIO_PORT 	platform_swdio_port
 #define SWDIO_PIN	platform_swdio_pin
@@ -56,5 +56,10 @@ bool gpio_get(GpioPort_t port, GpioPin_t pin);
 
 void SWDIO_MODE_FLOAT(void);
 void SWDIO_MODE_DRIVE(void);
+
+/* Global variable used to blackmagic to delay execution a bit.
+   Set to zero since depending on the optimization level the
+   compiler might remove the delay anyway. */
+static const uint32_t swd_delay_cnt = 0;
 
 #endif /* BLACKMAGIC_PLATFORM_H_ */
