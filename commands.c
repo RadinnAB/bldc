@@ -1830,8 +1830,7 @@ static THD_FUNCTION(blocking_thread, arg) {
 
 #ifdef NRF5x_SWDIO_GPIO
 			buffer_append_int16(send_buffer, 1, &ind);
-			bm_change_swd_pins(NRF5x_SWDIO_GPIO, NRF5x_SWDIO_PIN,
-					NRF5x_SWCLK_GPIO, NRF5x_SWCLK_PIN);
+			bm_nrf5x_swd_pins();
 #else
 			buffer_append_int16(send_buffer, 0, &ind);
 #endif

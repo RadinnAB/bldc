@@ -306,7 +306,7 @@ static void terminal_map_nrf5_pins(int argc, const char **argv) {
 			bm_default_swd_pins();
 			commands_printf("Setting default SWD Pins\n");
 		} else if (use_pins == 1) {
-			bm_change_swd_pins(NRF5x_SWDIO_GPIO, NRF5x_SWDIO_PIN, NRF5x_SWCLK_GPIO, NRF5x_SWCLK_PIN);
+			bm_nrf5x_swd_pins();
 			commands_printf("Setting NRF5 Pins\n");
 		} else {
 			commands_printf("Argument should be 1 or 0\n");
@@ -614,27 +614,11 @@ void bm_disconnect(void) {
 }
 
 /**
- * Change SWD pins.
- *
- * @param swdio_port
- * new SWDIO port
- *
- * @param swdio_pin
- * new SWDIO pin
- *
- * @param swclk_port
- * new SWCLK port
- *
- * @param swclk_pin
- * new SWCLK pin
+ * Use NRF5x pins
  */
-void bm_change_swd_pins(stm32_gpio_t *swdio_port, int swdio_pin,
-		stm32_gpio_t *swclk_port, int swclk_pin) {
+void bm_nrf5x_swd_pins(void) {
 	bm_set_enabled(false);
-	platform_swdio_port = swdio_port;
-	platform_swdio_pin = swdio_pin;
-	platform_swclk_port = swclk_port;
-	platform_swclk_pin = swclk_pin;
+	platform_set_nrf5x_pins();
 }
 
 /**
@@ -642,8 +626,5 @@ void bm_change_swd_pins(stm32_gpio_t *swdio_port, int swdio_pin,
  */
 void bm_default_swd_pins(void) {
 	bm_set_enabled(false);
-	platform_swdio_port = SWDIO_PORT_DEFAULT;
-	platform_swdio_pin = SWDIO_PIN_DEFAULT;
-	platform_swclk_port = SWCLK_PORT_DEFAULT;
-	platform_swclk_pin = SWCLK_PIN_DEFAULT;
+	platform_set_default_pins();
 }

@@ -33,8 +33,7 @@ int bm_mem_read(uint32_t addr, void *data, uint32_t len);
 int bm_reboot(void);
 void bm_leave_nrf_debug_mode(void);
 void bm_disconnect(void);
-void bm_change_swd_pins(stm32_gpio_t *swdio_port, int swdio_pin,
-		stm32_gpio_t *swclk_port, int swclk_pin);
+void bm_nrf5x_swd_pins(void);
 void bm_default_swd_pins(void);
 
 #endif /* BLACKMAGIC_BM_IF_H_ */
