@@ -110,7 +110,7 @@ include nrf/nrf.mk
 include libcanard/canard.mk
 include imu/imu.mk
 include compression/compression.mk
-include blackmagic/blackmagic.mk
+include blackmagic-integration/blackmagic.mk
 
 # Define linker script file here
 LDSCRIPT= ld_eeprom_emu.ld
